@@ -7,7 +7,7 @@ import java.util.HashSet;
  */
 public class FirstMissingPositives {
     public static void main(String[] args) {
-        int[] nums = {7,8,9,11,12};
+        int[] nums = {100000,1000002,-1,1};
         int res = new FirstMissingPositives().firstMissingPositive(nums);
         System.out.println(res);
     }
@@ -16,22 +16,17 @@ public class FirstMissingPositives {
         HashSet<Integer> hs = new HashSet<Integer>();
         for (int i : nums)
         {
-            if (i <= 0)
-            {
-                continue;
-            }
-            hs.add(i);
+            if (i > 0)
+                hs.add(i);
         }
-        for (int i: hs)
+       
+        while (true)
         {
-            if (res == i)
-            {
-                res += 1;
-            }
-            else
+            if (!hs.contains(res))
             {
                 break;
             }
+            res +=1;
         }
         return res;
     }
